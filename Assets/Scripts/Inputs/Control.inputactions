@@ -1,0 +1,34 @@
+{
+    "name": "Control",
+    "maps": [
+        {
+            "name": "BalanceViaMouse",
+            "id": "7db42136-e175-4415-ac4b-43c98c4b4f72",
+            "actions": [
+                {
+                    "name": "Balance",
+                    "type": "Value",
+                    "id": "1c576b15-1b50-4738-be58-af44734720e7",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0fe2849c-1cd5-493a-8336-2018c70625b0",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Balance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
