@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour
 {
-    void Start()
+    private void Awake()
     {
-        // Assuming the player GameObject is tagged as "Player"
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
