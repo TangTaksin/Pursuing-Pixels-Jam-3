@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667b95471911eb147ad5ccb2587dfeee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windStrenght: 100
+  windStrenght: 10
 --- !u!65 &1982996022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3034,7 +3034,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _rigidbody: {fileID: 237157235}
-  mouseSentivity: 1
+  mouseSentivity: 0.1
   FailAngle: 90
   _balanceBar: {fileID: 1683924330}
   angletext: {fileID: 349033340}
