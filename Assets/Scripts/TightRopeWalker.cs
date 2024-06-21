@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class TightRopeWalker : MonoBehaviour
 {
+    bool fall;
+
     float angle = 0;
     float angleVelocity;
     float angleAcceleration;
@@ -16,17 +18,29 @@ public class TightRopeWalker : MonoBehaviour
     public Camera cam;
     public Transform camTarget;
 
+    Animator _animator;
+    public AnimationCurve FlailCurve;
+
+    public Rigidbody _rigidbody;
+
     Vector3 camOffset;
 
     [Range(.1f,2)] public float mouseSentivity = 1;
 
-    float dot = 0;
-    [Range(0.1f, 0.9f)] float dotFail = .45f;
+    [Range(0, 90)] public float FailAngle = 45f;
+    public BalanceBar _balanceBar;
 
-    public TextMeshProUGUI angletext, dotText;
+    public TextMeshProUGUI angletext;
 
     private void OnEnable()
     {
+        fall = false;
+
+        _animator = GetComponent<Animator>();
+        _animator.Play("Walking");
+
+        _rigidbody.isKinematic = true;
+
         if (!objectToRotate)
         {
             objectToRotate = transform;
@@ -47,22 +61,16 @@ public class TightRopeWalker : MonoBehaviour
 
     private void Update()
     {
-        dot = Vector2.Dot(objectToRotate.up, Vector2.up);
         Drifting();
-
-        if (angle > 90)
-            angle = -90;
-        if (angle < -90)
-            angle = 90;
-
 
         objectToRotate.rotation = Quaternion.Euler(0, 0, angle);
 
         angletext.text = angle.ToString();
-        dotText.text = dot.ToString();
 
         FailCheck();
+        Animate();
         CamFollow();
+        _balanceBar?.UpdateBar(angle, FailAngle);
     }
 
     public void SetInfluence(float value)
@@ -80,6 +88,8 @@ public class TightRopeWalker : MonoBehaviour
         var mXDelta = inputValue.Get<float>();
         print(mXDelta);
 
+        //angle += -mXDelta * mouseSentivity * Time.deltaTime;
+
         Accelerate(-mXDelta * mouseSentivity);
 
     }    
@@ -92,21 +102,41 @@ public class TightRopeWalker : MonoBehaviour
 
     void Accelerate(float amount = 0)
     {
-        angleAcceleration += amount; 
-        angleVelocity = influence + angleAcceleration * Time.deltaTime;
+        if (fall)
+            return;
+
+        angleAcceleration += amount + influence * Time.deltaTime; 
+        angleVelocity = angleAcceleration * Time.deltaTime;
         angle += angleVelocity;
+
     }    
+
+    void Animate()
+    {
+        var flailweight = FlailCurve.Evaluate(angle / FailAngle);
+
+        _animator.SetLayerWeight(1, flailweight);
+    }
 
     void FailCheck()
     {
-        if (dot <= dotFail)
+        if (Mathf.Abs(angle) >= FailAngle && !fall)
         {
+            if (angle < 0)
+                angle = -FailAngle;
+            else
+                angle = FailAngle;
 
+            fall = true;
+            _animator.SetTrigger("Fall");
+
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = Vector3.down * angleVelocity * 2;
         }
     }
 
     void CamFollow()
     {
-        cam.transform.position = camTarget.transform.position + camOffset;
+        cam.transform.position = new Vector3(camTarget.transform.position.x, 0, camTarget.transform.position.z) + camOffset;
     }
 }
