@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Settings/Global Volume Profile.asset.meta
 guid: 511d3775fba413a4ab3fbdbdbb10b942
+========
+guid: 88da5eb51c76a284b974b66a4e986e7c
+>>>>>>>> gameplay_branch:Assets/Settings/New Universal Render Pipeline Asset.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

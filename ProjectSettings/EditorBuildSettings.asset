@@ -4,20 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Parallel1.unity
-    guid: 69155fdf6b3e58440924db349c36d4b1
-  - enabled: 1
-    path: Assets/Scenes/Parallel2.unity
-    guid: 3ea6cd124b1a75a4cad92fb14d75e708
-  - enabled: 1
-    path: Assets/Scenes/ParallelTest.unity
-    guid: 89e8f40cebb91384a825802556214801
-  - enabled: 1
-    path: Assets/Scenes/Parallel3.unity
-    guid: 4d03d1634d589fe49b8fb0d92fbbca4e
+  m_Scenes: []
   m_configObjects: {}
