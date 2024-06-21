@@ -32,6 +32,9 @@ public class TightRopeWalker : MonoBehaviour
 
     public TextMeshProUGUI angletext;
 
+    public delegate void PlayerEvent();
+    public static PlayerEvent OnFall;
+
     private void OnEnable()
     {
         fall = false;
@@ -86,7 +89,6 @@ public class TightRopeWalker : MonoBehaviour
     public void OnBalance(InputValue inputValue)
     {
         var mXDelta = inputValue.Get<float>();
-        print(mXDelta);
 
         //angle += -mXDelta * mouseSentivity * Time.deltaTime;
 
@@ -132,6 +134,8 @@ public class TightRopeWalker : MonoBehaviour
 
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.down * angleVelocity * 2;
+
+            OnFall?.Invoke();
         }
     }
 
