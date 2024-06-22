@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
     {
         // Assuming the player GameObject is tagged as "Player"
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+
         if (player != null)
         {
             Vector3 currentPosition = player.transform.position;

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class TightRopeWalker : MonoBehaviour
 {
-    bool fall;
+    bool uncontrolabled;
 
     float angle = 0;
     float angleVelocity;
@@ -25,24 +25,23 @@ public class TightRopeWalker : MonoBehaviour
 
     Vector3 camOffset;
 
-    [Range(.1f,2)] public float mouseSentivity = 1;
+    [Range(.1f, 2)] public float mouseSentivity = 1;
 
     [Range(0, 90)] public float FailAngle = 45f;
     public BalanceBar _balanceBar;
-
-    public TextMeshProUGUI angletext;
 
     public delegate void PlayerEvent();
     public static PlayerEvent OnFall;
 
     private void OnEnable()
     {
-        fall = false;
+        uncontrolabled = false;
 
         _animator = GetComponent<Animator>();
         _animator.Play("Walking");
 
         _rigidbody.isKinematic = true;
+
 
         if (!objectToRotate)
         {
@@ -60,6 +59,15 @@ public class TightRopeWalker : MonoBehaviour
         {
             camTarget = transform;
         }
+        
+        ParallelZone.onCountdownStart += OnCountdownStart;
+        ParallelZone.onCountdownOver += OnCountdownEnd;
+    }
+
+    private void OnDisable()
+    {
+        ParallelZone.onCountdownStart -= OnCountdownStart;
+        ParallelZone.onCountdownOver -= OnCountdownEnd;
     }
 
     private void Update()
@@ -67,8 +75,6 @@ public class TightRopeWalker : MonoBehaviour
         Drifting();
 
         objectToRotate.rotation = Quaternion.Euler(0, 0, angle);
-
-        angletext.text = angle.ToString();
 
         FailCheck();
         Animate();
@@ -94,7 +100,7 @@ public class TightRopeWalker : MonoBehaviour
 
         Accelerate(-mXDelta * mouseSentivity);
 
-    }    
+    }
 
     void Drifting()
     {
@@ -104,14 +110,14 @@ public class TightRopeWalker : MonoBehaviour
 
     void Accelerate(float amount = 0)
     {
-        if (fall)
+        if (uncontrolabled)
             return;
 
-        angleAcceleration += amount + influence * Time.deltaTime; 
+        angleAcceleration += amount + influence * Time.deltaTime;
         angleVelocity = angleAcceleration * Time.deltaTime;
         angle += angleVelocity;
 
-    }    
+    }
 
     void Animate()
     {
@@ -122,18 +128,18 @@ public class TightRopeWalker : MonoBehaviour
 
     void FailCheck()
     {
-        if (Mathf.Abs(angle) >= FailAngle && !fall)
+        if (Mathf.Abs(angle) >= FailAngle && !uncontrolabled)
         {
             if (angle < 0)
                 angle = -FailAngle;
             else
                 angle = FailAngle;
 
-            fall = true;
+            uncontrolabled = true;
             _animator.SetTrigger("Fall");
 
             _rigidbody.isKinematic = false;
-            _rigidbody.velocity = Vector3.down * angleVelocity * 2;
+            _rigidbody.velocity = Vector3.down * Mathf.Abs(angleVelocity) * 2;
 
             OnFall?.Invoke();
         }
@@ -142,5 +148,15 @@ public class TightRopeWalker : MonoBehaviour
     void CamFollow()
     {
         cam.transform.position = new Vector3(camTarget.transform.position.x, 0, camTarget.transform.position.z) + camOffset;
+    }
+
+    void OnCountdownStart()
+    {
+        uncontrolabled = true;
+    }
+
+    void OnCountdownEnd()
+    {
+        uncontrolabled = false;
     }
 }

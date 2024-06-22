@@ -1,9 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using TMPro;
 
 public class ParallelZone : MonoBehaviour
 {
+    bool gameStarted = true;
+
     Animator _animator;
+
+    public int fallLimits;
+    int fallCounts;
+
+    public HealthUI _healthUI;
+    public TextMeshProUGUI _countdownTxt;
+
+    public float totalCountdownTime = 3;
 
     // Array of scene names to switch to
     public string[] parallelScenes;
@@ -13,6 +25,10 @@ public class ParallelZone : MonoBehaviour
 
     // Gizmo color
     public Color gizmoColor = Color.red;
+
+    public delegate void TimerEvent();
+    public static TimerEvent onCountdownStart;
+    public static TimerEvent onCountdownOver;
 
     private void OnEnable()
     {
@@ -32,6 +48,11 @@ public class ParallelZone : MonoBehaviour
         print("scene loaded");
         _animator.Play("FadeCanvas_Out");
         player = GameObject.FindGameObjectWithTag("Player");
+
+        if (fallCounts <= fallLimits && gameStarted)
+            StartCoroutine(Countdown());
+
+        _healthUI.UpdateHealthUI(fallCounts, fallLimits);
     }
 
     // Function to be called when the player enters the trigger zone
@@ -47,6 +68,8 @@ public class ParallelZone : MonoBehaviour
     // Function to randomly change to another scene
     private void PlayerFell()
     {
+        fallCounts++;
+
         if (parallelScenes.Length > 0)
         {
             // Save the player's current Z position
@@ -81,7 +104,30 @@ public class ParallelZone : MonoBehaviour
             selectedScene = parallelScenes[randomIndex];
         }
 
+        if (fallCounts > fallLimits)
+        {
+            selectedScene = "FailScene";
+        }
+
         SceneManager.LoadScene(selectedScene);
+    }
+
+    IEnumerator Countdown()
+    {
+        onCountdownStart?.Invoke();
+
+        _countdownTxt.gameObject.SetActive(true);
+        _countdownTxt.text = "Prepare\n3";
+        yield return new WaitForSeconds(totalCountdownTime/3);
+
+        _countdownTxt.text = "Prepare\n2";
+        yield return new WaitForSeconds(totalCountdownTime/3);
+
+        _countdownTxt.text = "Prepare\n1";
+        yield return new WaitForSeconds(totalCountdownTime/3);
+
+        _countdownTxt.gameObject.SetActive(false);
+        onCountdownOver?.Invoke();
     }
 
     // Draw gizmo in the editor
