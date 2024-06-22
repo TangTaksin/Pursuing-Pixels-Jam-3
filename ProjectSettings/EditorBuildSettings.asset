@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/prototype_parallel.unity
     guid: d53869c390cb02c46a7472d02b7c5f86
   - enabled: 1
-    path: Assets/Scenes/ParallelTest.unity
+    path: Assets/Scenes/Parallel0.unity
     guid: 89e8f40cebb91384a825802556214801
   - enabled: 1
     path: Assets/Scenes/Parallel1.unity

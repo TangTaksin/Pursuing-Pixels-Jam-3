@@ -88,17 +88,4 @@ public class ParallelZone : MonoBehaviour
 
         SceneManager.LoadScene(selectedScene);
     }
-
-    // Draw gizmo in the editor
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = gizmoColor;
-
-        // Draw a cube where the BoxCollider is
-        Collider collider = GetComponent<Collider>();
-        if (collider != null)
-        {
-            Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size);
-        }
-    }
 }
