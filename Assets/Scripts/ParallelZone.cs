@@ -11,9 +11,6 @@ public class ParallelZone : MonoBehaviour
     // Reference to the player
     public GameObject player;
 
-    // Gizmo color
-    public Color gizmoColor = Color.red;
-
     private void OnEnable()
     {
         _animator = GetComponent<Animator>();

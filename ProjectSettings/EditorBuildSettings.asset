@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Parallel3.unity
     guid: 4d03d1634d589fe49b8fb0d92fbbca4e
+  - enabled: 1
+    path: Assets/Scenes/Parallel4.unity
+    guid: f7bccc5fa3541b144a25344653b377c0
+  - enabled: 1
+    path: Assets/Scenes/Parallel5.unity
+    guid: dfc1c3238279f324bbc452d59cafd998
   m_configObjects: {}
