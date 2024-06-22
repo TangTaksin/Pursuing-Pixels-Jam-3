@@ -32,6 +32,11 @@ public class ParallelZone : MonoBehaviour
         print("scene loaded");
         _animator.Play("FadeCanvas_Out");
         player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Vector3 currentPosition = player.transform.position;
+            player.transform.position = new Vector3(currentPosition.x, currentPosition.y, GameManager.Instance.playerZPosition);
+        }
     }
 
     // Function to be called when the player enters the trigger zone
