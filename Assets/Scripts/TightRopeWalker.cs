@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class TightRopeWalker : MonoBehaviour
 {
-    bool uncontrolabled;
+    bool uncontrolabled = true;
 
     float angle = 0;
     float angleVelocity;
@@ -15,15 +15,10 @@ public class TightRopeWalker : MonoBehaviour
     float influence;
     public Transform objectToRotate;
 
-    public Camera cam;
-    public Transform camTarget;
-
     Animator _animator;
     public AnimationCurve FlailCurve;
 
     public Rigidbody _rigidbody;
-
-    Vector3 camOffset;
 
     [Range(.1f, 2)] public float mouseSentivity = 1;
 
@@ -35,10 +30,9 @@ public class TightRopeWalker : MonoBehaviour
 
     private void OnEnable()
     {
-        uncontrolabled = false;
+        uncontrolabled = true;
 
         _animator = GetComponent<Animator>();
-        _animator.Play("Walking");
 
         _rigidbody.isKinematic = true;
 
@@ -48,18 +42,6 @@ public class TightRopeWalker : MonoBehaviour
             objectToRotate = transform;
         }
 
-        if (!cam)
-        {
-            cam = Camera.main;
-        }
-
-        camOffset = cam.transform.position - camTarget.position;
-
-        if (!camTarget)
-        {
-            camTarget = transform;
-        }
-        
         ParallelZone.onCountdownStart += OnCountdownStart;
         ParallelZone.onCountdownOver += OnCountdownEnd;
     }
@@ -78,7 +60,7 @@ public class TightRopeWalker : MonoBehaviour
 
         FailCheck();
         Animate();
-        CamFollow();
+
         _balanceBar?.UpdateBar(angle, FailAngle);
     }
 
@@ -145,14 +127,10 @@ public class TightRopeWalker : MonoBehaviour
         }
     }
 
-    void CamFollow()
-    {
-        cam.transform.position = new Vector3(camTarget.transform.position.x, 0, camTarget.transform.position.z) + camOffset;
-    }
-
     void OnCountdownStart()
     {
         uncontrolabled = true;
+        _animator.Play("Walking");
     }
 
     void OnCountdownEnd()

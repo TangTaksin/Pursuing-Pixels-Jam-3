@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/prototype.unity
     guid: d27a430b48649d541bd99468b76e8cdd
   - enabled: 1
-    path: Assets/Scenes/prototype_parallel.unity
-    guid: 58480ce827363d447997da3e123f9c4c
+    path: Assets/Scenes/prototype_day.unity
+    guid: a4e4d27910c182f4597806781bb58df2
   - enabled: 1
     path: Assets/Scenes/FailScene.unity
     guid: 992b01e87fe15da48a92f3e9de833af6

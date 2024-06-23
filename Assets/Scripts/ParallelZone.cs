@@ -5,7 +5,7 @@ using TMPro;
 
 public class ParallelZone : MonoBehaviour
 {
-    bool gameStarted = true;
+    bool gameStarted = false;
 
     Animator _animator;
 
@@ -35,12 +35,14 @@ public class ParallelZone : MonoBehaviour
         _animator = GetComponent<Animator>();
         TightRopeWalker.OnFall += PlayerFell;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        TitleScript.OnPlay += OnGameStart;
     }
 
     private void OnDisable()
     {
         TightRopeWalker.OnFall -= PlayerFell;
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        TitleScript.OnPlay -= OnGameStart;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -49,9 +51,15 @@ public class ParallelZone : MonoBehaviour
         _animator.Play("FadeCanvas_Out");
         player = GameObject.FindGameObjectWithTag("Player");
 
+        if (player != null)
+        {
+            Vector3 currentPosition = player.transform.position;
+            player.transform.position = new Vector3(currentPosition.x, currentPosition.y, GameManager.Instance.playerZPosition);
+        }
+
         if (fallCounts <= fallLimits && gameStarted)
             StartCoroutine(Countdown());
-
+            
         _healthUI.UpdateHealthUI(fallCounts, fallLimits);
     }
 
@@ -110,6 +118,12 @@ public class ParallelZone : MonoBehaviour
         }
 
         SceneManager.LoadScene(selectedScene);
+    }
+
+    void OnGameStart()
+    {
+        StartCoroutine(Countdown());
+        gameStarted = true;
     }
 
     IEnumerator Countdown()
