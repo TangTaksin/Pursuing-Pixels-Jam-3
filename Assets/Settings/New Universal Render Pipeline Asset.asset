@@ -10,14 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf2edee5c58d82540a51f03df9d42094, type: 3}
+<<<<<<<< HEAD:Assets/Settings/New Universal Render Pipeline Asset.asset
   m_Name: New Universal Render Pipeline Asset
+========
+  m_Name: Universal Render 3D
+>>>>>>>> Environment:Assets/Settings/Universal Render 3D.asset
   m_EditorClassIdentifier: 
   k_AssetVersion: 11
   k_AssetPreviousVersion: 11
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
+<<<<<<<< HEAD:Assets/Settings/New Universal Render Pipeline Asset.asset
   - {fileID: 11400000, guid: 8108a1e21478cd647bd74ce506c90d56, type: 2}
+========
+  - {fileID: 11400000, guid: 6a533da3fe6c23b428f34c5a0d1c3ffc, type: 2}
+>>>>>>>> Environment:Assets/Settings/Universal Render 3D.asset
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0

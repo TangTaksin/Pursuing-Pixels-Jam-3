@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/ParallelTest/Global Volume Profile.asset.meta
 guid: a15a3f8173bb530468f1f492e4d64224
+========
+guid: 951fb38477a669b4b884f200276013f9
+>>>>>>>> Environment:Assets/Settings/Universal Render 3D.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
