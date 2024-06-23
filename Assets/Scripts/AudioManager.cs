@@ -10,6 +10,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip backgroundMusic;
+    public AudioClip falling;
+    public AudioClip nooooVoice;
+    public AudioClip laughtVoice;
+    public AudioClip yiihaVoice;
     public AudioClip[] footstepSounds;
 
     [Header("Footstep Settings")]
@@ -31,6 +35,16 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Start()
+    {
+        PlayMusic(backgroundMusic);
+    }
+
+    void Update()
+    {
+        PlayFootstepSFX();
     }
 
     public void PlayMusic(AudioClip clip)

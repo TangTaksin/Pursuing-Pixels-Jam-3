@@ -455,7 +455,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: eacf4f9543e4c6f49b89728e538efca0, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 90d353727ed6def4fb9f3214f47fe656, type: 2}
   m_EnableTreeColliders: 0
 --- !u!218 &446143457
 Terrain:
@@ -466,7 +466,7 @@ Terrain:
   m_GameObject: {fileID: 446143454}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: eacf4f9543e4c6f49b89728e538efca0, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 90d353727ed6def4fb9f3214f47fe656, type: 2}
   m_TreeDistance: 134
   m_TreeBillboardDistance: 250
   m_TreeCrossFadeLength: 0
@@ -3560,9 +3560,17 @@ MonoBehaviour:
   objectToRotate: {fileID: 237157234}
   cam: {fileID: 476811802}
   camTarget: {fileID: 543450652898558783}
+  FlailCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _rigidbody: {fileID: 0}
   mouseSentivity: 1
+  FailAngle: 45
+  _balanceBar: {fileID: 0}
   angletext: {fileID: 349033340}
-  dotText: {fileID: 997688748}
 --- !u!136 &5866666021099985223
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Settings/New Universal Render Pipeline Asset.asset.meta
 guid: 606a17c6a9ba3684fb39bc96d958ed3a
-========
-guid: 0696b5c3c99ce2c4a89d3f7bfc7e3f06
->>>>>>>> gameplay_branch:Assets/Settings/New Universal Render Pipeline Asset_Renderer.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
