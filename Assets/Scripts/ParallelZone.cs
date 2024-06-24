@@ -185,8 +185,6 @@ public class ParallelZone : MonoBehaviour
         onCountdownOver?.Invoke();
     }
 
-    // Draw gizmo in the editor
-    private void OnDrawGizmos()
     public void LoadEndScene()
     {
         if (!string.IsNullOrEmpty(nextSceneName))

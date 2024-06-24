@@ -134,6 +134,7 @@ public class TightRopeWalker : MonoBehaviour
             uncontrolabled = true;
             _animator.SetFloat("Side", angle.Remap(-90,90,-1,-1));
             _animator.SetTrigger("Fall");
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.nooooVoice);
 
             _rigidbody.isKinematic = false;
             _rigidbody.velocity = Vector3.down * Mathf.Abs(angleVelocity) * 2;
