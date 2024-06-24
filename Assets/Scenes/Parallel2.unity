@@ -13239,7 +13239,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: a15a3f8173bb530468f1f492e4d64224, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 771ee24602d5ecb40a82aa9ea721fccb, type: 2}
 --- !u!4 &1257895634
 Transform:
   m_ObjectHideFlags: 0
@@ -16040,6 +16040,7 @@ MonoBehaviour:
   - prototype
   - prototype_parallel
   - ParallelTest
+  nextSceneName: EndScene
   player: {fileID: 1448090805}
 --- !u!114 &1846573485
 MonoBehaviour:
@@ -17691,35 +17692,13 @@ GameObject:
   - component: {fileID: 2138088435}
   - component: {fileID: 2138088434}
   - component: {fileID: 2138088433}
-  - component: {fileID: 2138088432}
   m_Layer: 0
   m_Name: EndZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!95 &2138088432
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138088431}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ba6b16c46fbadb44b63c9645da4b832, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_IsActive: 0
 --- !u!114 &2138088433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17732,6 +17711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78be74f20fcdfc84ea1bcebe94384cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1846573483}
   player: {fileID: 0}
   nextSceneName: EndScene
   gizmoColor: {r: 0.3754716, g: 1, b: 0.38358837, a: 1}

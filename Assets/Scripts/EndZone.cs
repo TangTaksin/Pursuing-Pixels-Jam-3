@@ -3,14 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class EndZone : MonoBehaviour
 {
-    private Animator _animator;
+    public Animator _animator;
     [SerializeField] private GameObject player;
     [SerializeField] private string nextSceneName; // The specific scene to load
     [SerializeField] private Color gizmoColor = Color.red;
 
     private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -37,11 +36,7 @@ public class EndZone : MonoBehaviour
 
     private void PlayerWin()
     {
-        // Save the player's current Z position
-        GameManager.Instance.SavePlayerZPosition(player.transform.position.z);
-        // Play fade animation, then load the scene.
-        _animator.Play("FadeCanvas_In");
-        // No need to invoke here; the animation event will handle the delay.
+        _animator.Play("FadeCanvas_In_End");
     }
 
     // Animation event function called from 'FadeCanvas_In' animation
@@ -49,12 +44,8 @@ public class EndZone : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nextSceneName))
         {
-            Debug.Log("Changing to scene: " + nextSceneName);
+            
             SceneManager.LoadScene(nextSceneName);
-        }
-        else
-        {
-            Debug.LogError("Next scene name is not defined!");
         }
     }
 

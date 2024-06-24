@@ -7,6 +7,7 @@ public class ParallelZone : MonoBehaviour
 
     // Array of scene names to switch to
     public string[] parallelScenes;
+    [SerializeField] private string nextSceneName;
 
     // Reference to the player
     public GameObject player;
@@ -84,5 +85,18 @@ public class ParallelZone : MonoBehaviour
         }
 
         SceneManager.LoadScene(selectedScene);
+    }
+
+    public void LoadEndScene()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            Debug.Log("Changing to scene: " + nextSceneName);
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogError("Next scene name is not defined!");
+        }
     }
 }
