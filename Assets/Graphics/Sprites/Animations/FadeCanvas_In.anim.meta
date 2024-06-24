@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Settings/New Universal Render Pipeline Asset_Renderer.asset.meta
+guid: 9d33465bfc46a8d448d2563934ad19cc
+========
 guid: 07a3fd351b31fef468e58ec6bab5ef03
+>>>>>>>> gameplay_branch:Assets/Graphics/Sprites/Animations/FadeCanvas_In.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

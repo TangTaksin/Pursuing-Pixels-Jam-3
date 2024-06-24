@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/3DAssets.meta
+guid: d58844ec95172ed44a2c9de876c78296
+========
 guid: fb1d531bcd1912846a65aa81f2b60810
+>>>>>>>> gameplay_branch:Assets/Graphics/Sprites/Animations.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

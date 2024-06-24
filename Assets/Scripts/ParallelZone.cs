@@ -20,6 +20,7 @@ public class ParallelZone : MonoBehaviour
 
     // Array of scene names to switch to
     public string[] parallelScenes;
+    [SerializeField] private string nextSceneName;
 
     // Reference to the player
     public GameObject player;
@@ -186,14 +187,16 @@ public class ParallelZone : MonoBehaviour
 
     // Draw gizmo in the editor
     private void OnDrawGizmos()
+    public void LoadEndScene()
     {
-        Gizmos.color = gizmoColor;
-
-        // Draw a cube where the BoxCollider is
-        Collider collider = GetComponent<Collider>();
-        if (collider != null)
+        if (!string.IsNullOrEmpty(nextSceneName))
         {
-            Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size);
+            Debug.Log("Changing to scene: " + nextSceneName);
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogError("Next scene name is not defined!");
         }
     }
 }

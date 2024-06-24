@@ -174,4 +174,10 @@ public class TightRopeWalker : MonoBehaviour
         _animator.speed = 1;
         walkMod = _animator.speed;
     }
+
+    public void PlayFootstep()
+    {
+        AudioManager.Instance.PlayFootstepSFX();
+
+    }
 }
