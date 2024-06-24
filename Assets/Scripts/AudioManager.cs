@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip backgroundMusic;
+    public AudioClip windSfx;
     public AudioClip falling;
     public AudioClip nooooVoice;
     public AudioClip laughtVoice;
@@ -42,10 +43,6 @@ public class AudioManager : MonoBehaviour
         PlayMusic(backgroundMusic);
     }
 
-    void Update()
-    {
-        PlayFootstepSFX();
-    }
 
     public void PlayMusic(AudioClip clip)
     {

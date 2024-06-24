@@ -143,4 +143,10 @@ public class TightRopeWalker : MonoBehaviour
     {
         cam.transform.position = new Vector3(camTarget.transform.position.x, 0, camTarget.transform.position.z) + camOffset;
     }
+
+    public void PlayFootstep()
+    {
+        AudioManager.Instance.PlayFootstepSFX();
+
+    }
 }
