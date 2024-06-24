@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
     public GameObject iconContainer;
+    public TextMeshProUGUI healthLabel;
     public Image[] healthIcons;
     public Sprite OnSprite, offSprite;
 
@@ -13,13 +15,25 @@ public class HealthUI : MonoBehaviour
     {
         var displayAmount = maxHealth - currentHealth;
 
-        if (displayAmount <= 0)
+        if (displayAmount < 0)
         {
-            gameObject.SetActive(false);
+            healthLabel.text = "Try Again ?";
+            iconContainer.SetActive(false);
+
+            return;
+        }
+         else if (displayAmount == 0)
+        {
+            healthLabel.text = "One Last Chance";
+            iconContainer.SetActive(false);
+
             return;
         }
         else
-            gameObject.SetActive(true);
+        {
+            healthLabel.text = "SAFETY";
+            iconContainer.SetActive(true);
+        }
 
         for (int i = 0; i < healthIcons.Length; i++)
         {

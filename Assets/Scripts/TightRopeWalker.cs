@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class TightRopeWalker : MonoBehaviour
 {
     bool uncontrolabled = true;
+    bool paused = false;
+    bool gameStarted = false;
 
     float angle = 0;
     float angleVelocity;
@@ -16,6 +18,9 @@ public class TightRopeWalker : MonoBehaviour
     public Transform objectToRotate;
 
     Animator _animator;
+    float _animSpeedSave;
+    public float walkSpeed = 3;
+    float walkMod = 1;
     public AnimationCurve FlailCurve;
 
     public Rigidbody _rigidbody;
@@ -44,12 +49,14 @@ public class TightRopeWalker : MonoBehaviour
 
         ParallelZone.onCountdownStart += OnCountdownStart;
         ParallelZone.onCountdownOver += OnCountdownEnd;
+        PauseSystem.OnPaused += OnPause;
     }
 
     private void OnDisable()
     {
         ParallelZone.onCountdownStart -= OnCountdownStart;
         ParallelZone.onCountdownOver -= OnCountdownEnd;
+        PauseSystem.OnPaused -= OnPause;
     }
 
     private void Update()
@@ -60,6 +67,7 @@ public class TightRopeWalker : MonoBehaviour
 
         FailCheck();
         Animate();
+        MoveForward();
 
         _balanceBar?.UpdateBar(angle, FailAngle);
     }
@@ -92,7 +100,7 @@ public class TightRopeWalker : MonoBehaviour
 
     void Accelerate(float amount = 0)
     {
-        if (uncontrolabled)
+        if (uncontrolabled || paused)
             return;
 
         angleAcceleration += amount + influence * Time.deltaTime;
@@ -101,9 +109,15 @@ public class TightRopeWalker : MonoBehaviour
 
     }
 
+    void MoveForward()
+    {
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+            objectToRotate.transform.position += Vector3.forward * walkSpeed * Time.deltaTime * walkMod;
+    }
+
     void Animate()
     {
-        var flailweight = FlailCurve.Evaluate(angle / FailAngle);
+        var flailweight = FlailCurve.Evaluate(Mathf.Abs(angle) / FailAngle);
 
         _animator.SetLayerWeight(1, flailweight);
     }
@@ -118,6 +132,7 @@ public class TightRopeWalker : MonoBehaviour
                 angle = FailAngle;
 
             uncontrolabled = true;
+            _animator.SetFloat("Side", angle.Remap(-90,90,-1,-1));
             _animator.SetTrigger("Fall");
 
             _rigidbody.isKinematic = false;
@@ -136,5 +151,27 @@ public class TightRopeWalker : MonoBehaviour
     void OnCountdownEnd()
     {
         uncontrolabled = false;
+        gameStarted = true;
+
+        OnResume();
+    }
+
+
+
+    void OnPause()
+    {
+        if (gameStarted)
+        {
+            paused = true;
+            _animator.speed = 0;
+            walkMod = _animator.speed;
+        }
+    }
+
+    void OnResume()
+    {
+        paused = false;
+        _animator.speed = 1;
+        walkMod = _animator.speed;
     }
 }

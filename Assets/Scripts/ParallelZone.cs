@@ -8,6 +8,7 @@ public class ParallelZone : MonoBehaviour
     bool gameStarted = false;
 
     Animator _animator;
+    public GameObject FadeObject;
 
     public int fallLimits;
     int fallCounts;
@@ -33,9 +34,12 @@ public class ParallelZone : MonoBehaviour
     private void OnEnable()
     {
         _animator = GetComponent<Animator>();
+
         TightRopeWalker.OnFall += PlayerFell;
         SceneManager.sceneLoaded += OnSceneLoaded;
         TitleScript.OnPlay += OnGameStart;
+        PauseSystem.OnResumed += OnResume;
+        EndSceneScript.OnToTitle += Restart;
     }
 
     private void OnDisable()
@@ -43,6 +47,8 @@ public class ParallelZone : MonoBehaviour
         TightRopeWalker.OnFall -= PlayerFell;
         SceneManager.sceneLoaded -= OnSceneLoaded;
         TitleScript.OnPlay -= OnGameStart;
+        PauseSystem.OnResumed -= OnResume;
+        EndSceneScript.OnToTitle -= Restart;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -51,7 +57,7 @@ public class ParallelZone : MonoBehaviour
         _animator.Play("FadeCanvas_Out");
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player != null)
+        if (player != null && gameStarted)
         {
             Vector3 currentPosition = player.transform.position;
             player.transform.position = new Vector3(currentPosition.x, currentPosition.y, GameManager.Instance.playerZPosition);
@@ -84,13 +90,29 @@ public class ParallelZone : MonoBehaviour
             GameManager.Instance.SavePlayerZPosition(player.transform.position.z);
 
             // Play fade animation, then load the scene.
-            _animator.Play("FadeCanvas_In");
-            
+            PlayFadeIn();
         }
         else
         {
             Debug.LogError("No parallel scenes are defined!");
         }
+    }
+
+    void PlayFadeIn()
+    {
+        FadeObject?.SetActive(true);
+        _animator.Play("FadeCanvas_In");
+    }
+
+    void Restart()
+    {
+        gameStarted = false;
+        PlayFadeIn();
+    }
+
+    void UnactivateFade()
+    {
+        FadeObject?.SetActive(false);
     }
 
     //This will be execute from animation event.
@@ -112,9 +134,20 @@ public class ParallelZone : MonoBehaviour
             selectedScene = parallelScenes[randomIndex];
         }
 
+        var scName = SceneManager.GetActiveScene().name;
+
+        if (scName == "FailScene")
+        {
+            SceneManager.LoadScene("StartScene");
+
+            return;
+        }
+
         if (fallCounts > fallLimits)
         {
-            selectedScene = "FailScene";
+            SceneManager.LoadScene("FailScene");
+
+            return;
         }
 
         SceneManager.LoadScene(selectedScene);
@@ -123,7 +156,14 @@ public class ParallelZone : MonoBehaviour
     void OnGameStart()
     {
         StartCoroutine(Countdown());
+        _healthUI.gameObject.SetActive(true);
         gameStarted = true;
+    }
+
+    void OnResume()
+    {
+        if (gameStarted)
+            StartCoroutine(Countdown());
     }
 
     IEnumerator Countdown()

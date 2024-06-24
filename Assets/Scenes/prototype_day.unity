@@ -481,8 +481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11819019cb8d93f44a58dd64f9c50ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  camTarget: {fileID: 1281255357}
+  cam: {fileID: 476811802}
+  camTarget: {fileID: 4461075319791249241}
   camOffset: {x: 0, y: 4.05, z: -5.21}
 --- !u!1 &515998542
 GameObject:
@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconContainer: {fileID: 1969227928}
+  healthLabel: {fileID: 0}
   healthIcons:
   - {fileID: 1688466268}
   - {fileID: 1908700691}
@@ -746,11 +747,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169631732}
   m_CullTransparentMesh: 1
---- !u!4 &1281255357 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5793403852285682508, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
-  m_PrefabInstance: {fileID: 4461075319791249240}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646222793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840185c64a642d142bf7c880eaf83266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeObject: {fileID: 0}
   fallLimits: 3
   _healthUI: {fileID: 1169631734}
   _countdownTxt: {fileID: 31526303}
@@ -1731,7 +1728,7 @@ PrefabInstance:
     - target: {fileID: 3585464575386187096, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
       propertyPath: camTarget
       value: 
-      objectReference: {fileID: 1281255357}
+      objectReference: {fileID: 0}
     - target: {fileID: 3585464575386187096, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
       propertyPath: _balanceBar
       value: 
@@ -1740,6 +1737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5964877632666295120, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
+      propertyPath: _balanceBar
+      value: 
+      objectReference: {fileID: 1683924330}
     - target: {fileID: 6570081941384493558, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -1789,6 +1790,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
+--- !u!4 &4461075319791249241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 638813510239043858, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
+  m_PrefabInstance: {fileID: 4461075319791249240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

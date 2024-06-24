@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9af780e23fb8b141860a7a843f88d47
+guid: ffbbf935bb1357d439163061babb4e02
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -15,7 +15,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
-    motionNodeName: Armature/mixamorig:Hips/mixamorig:Hips.001
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 

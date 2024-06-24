@@ -10,7 +10,7 @@ public class TitleScript : MonoBehaviour
     public GameObject healthUI, balanceUI, countdownUI;
     public Animator cam_animator;
 
-    private void OnEnable()
+    private void Start()
     {
 
         // initiate
