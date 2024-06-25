@@ -138,7 +138,7 @@ public class ParallelZone : MonoBehaviour
 
         var scName = SceneManager.GetActiveScene().name;
 
-        if (scName == "FailScene")
+        if (scName == "FailScene" || scName == "EndScene")
         {
             SceneManager.LoadScene("StartScene");
 
