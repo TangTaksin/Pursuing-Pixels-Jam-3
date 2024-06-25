@@ -141,7 +141,7 @@ public class ParallelZone : MonoBehaviour
         if (scName == "FailScene" || scName == "EndScene")
         {
             SceneManager.LoadScene("StartScene");
-
+            
             return;
         }
 
@@ -190,6 +190,7 @@ public class ParallelZone : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(nextSceneName))
         {
+            gameStarted = false;
             Debug.Log("Changing to scene: " + nextSceneName);
             SceneManager.LoadScene(nextSceneName);
         }
