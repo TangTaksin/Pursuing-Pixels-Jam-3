@@ -4332,7 +4332,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 18.77, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -13195,7 +13195,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Parallel path
+  m_text: 'Parallel
+
+    path'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3526ed0682966e94b9967e2852abdb87, type: 2}
   m_sharedMaterial: {fileID: 1795052439713162010, guid: 3526ed0682966e94b9967e2852abdb87, type: 2}
@@ -13234,7 +13236,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -33.71
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

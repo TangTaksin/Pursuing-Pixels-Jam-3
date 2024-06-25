@@ -108,6 +108,7 @@ public class ParallelZone : MonoBehaviour
     void Restart()
     {
         gameStarted = false;
+        fallCounts = 0;
         PlayFadeIn();
     }
 
