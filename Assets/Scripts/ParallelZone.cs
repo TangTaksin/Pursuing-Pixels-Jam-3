@@ -160,12 +160,18 @@ public class ParallelZone : MonoBehaviour
         StartCoroutine(Countdown());
         _healthUI.gameObject.SetActive(true);
         gameStarted = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnResume()
     {
         if (gameStarted)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             StartCoroutine(Countdown());
+        }  
     }
 
     IEnumerator Countdown()

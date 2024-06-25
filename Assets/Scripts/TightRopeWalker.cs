@@ -133,7 +133,7 @@ public class TightRopeWalker : MonoBehaviour
 
             uncontrolabled = true;
             _animator.SetFloat("Side", angle.Remap(-90,90,-1,-1));
-            _animator.SetTrigger("Fall");
+            _animator.Play("Fall");
             AudioManager.Instance.PlaySFX(AudioManager.Instance.nooooVoice);
 
             _rigidbody.isKinematic = false;
@@ -166,6 +166,8 @@ public class TightRopeWalker : MonoBehaviour
             paused = true;
             _animator.speed = 0;
             walkMod = _animator.speed;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -174,6 +176,8 @@ public class TightRopeWalker : MonoBehaviour
         paused = false;
         _animator.speed = 1;
         walkMod = _animator.speed;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void PlayFootstep()
