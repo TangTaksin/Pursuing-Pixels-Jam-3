@@ -1918,6 +1918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5865043237458984582, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5964877632666295120, guid: 70ac186b4bb60eb4e8adae7220ff56d1, type: 3}
       propertyPath: _balanceBar
       value: 
